@@ -31,10 +31,10 @@ Quais as mudanças que foram realizadas? O que foi mudado, em termos de comporta
 
 Qual foi seu processo para realizar essas mudanças?
 
-- Junto com <Nome de colega de time> tentamos A, B, C 
+- Junto com \<Nome de colega de time\> tentamos A, B, C 
 - Tentei outra abordagem que não funcionou por causa de X, Y, Z
-- I followed this resource by <Author Name>: <Resource Link>
-- Used these code APIs/SDKs: <Name>, <Name>, <Name>
+- Segui o tutorial de \<Nome do Autor\>: \<Link\>
+- Usadas essas APIs/SDKs: \<Nome\>, \<Nome\>, \<Nome\>
 
 ## Artefatos (opcional)
 
