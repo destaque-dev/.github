@@ -27,7 +27,7 @@ Quais as mudanças que foram realizadas? O que foi mudado, em termos de comporta
 - Refatora...
 - Move...
 
-## Detalhamento de Processo (Opcional)
+## Detalhamento de Processo (opcional)
 
 Qual foi seu processo para realizar essas mudanças?
 
@@ -36,7 +36,7 @@ Qual foi seu processo para realizar essas mudanças?
 - I followed this resource by <Author Name>: <Resource Link>
 - Used these code APIs/SDKs: <Name>, <Name>, <Name>
 
-## Artefatos (Opcional)
+## Artefatos (opcional)
 
 Contextos visuais que podem auxiliar o revisor
 
@@ -66,7 +66,7 @@ Quais os passos para testar esta mudança?
 O que precisa ir junto (outro PR, migration, config, deploy)?
 Esta seção deve existir **mesmo quando não há dependência** — nesse caso, para declarar explicitamente que não há. A ausência da seção é diferente de "sem dependências"; queremos a afirmação explícita.
 
-## Outras considerações (situacional)
+## Outras considerações (opcional)
 
 O que, se é que houve algo, não foi tratado neste PR mas deveria ser considerado?
 
