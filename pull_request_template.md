@@ -1,50 +1,55 @@
-## Related Links
+> [!TIP]
+> Se tiver dúvida sobre como ou porque preencher determinado seção [clique aqui](https://ashleemboyer.com/blog/pull-request-template/#related-links) para uma explicação detalhada
 
-What links will make reviewing these code changes as straightforward as possible?
 
-- Deploy Preview
-- Jira/Asana/etc. Ticket
-- User Story
+## Links Relacionados (opcional)
 
-## What
+Que links tornam o contexto desse PR mais fácil de compreender?
 
-What changes did you make at a high level?
+- Tarefa do Monday
+- Conversa no Helpscout
 
-- Added...
-- Updated...
-- Refactored...
-- Moved...
+## Objetivo
 
-## Why
+Por que essas mudanças são úteis ou necessárias?
 
-Why are these changes helpful or necessary?
+- Nova feature...
+- Refactor em preparação para...
+- Tratando feedback recebido...
+- Continuação do PR XXX...
 
-- New feature requested...
-- Refactoring in preparation for...
-- Addressing design feedback...
-- Fast-follow to previous PR...
+## Alterações detalhadas
 
-## How
+Quais as mudanças que foram realizadas? O que foi mudado, em termos de comportamento/código?
 
-How did you go about making these changes?
+- Adiciona...
+- Atualiza...
+- Refatora...
+- Move...
 
-- Paired with <Teammate Name> where we did A, B, C
-- Tried another approach but it didn't work because X, Y, Z
+## Detalhamento de Processo (Opcional)
+
+Qual foi seu processo para realizar essas mudanças?
+
+- Junto com <Nome de colega de time> tentamos A, B, C 
+- Tentei outra abordagem que não funcionou por causa de X, Y, Z
 - I followed this resource by <Author Name>: <Resource Link>
 - Used these code APIs/SDKs: <Name>, <Name>, <Name>
 
-## Designs
+## Artefatos (Opcional)
 
-What visual context do reviewers need?
+Contextos visuais que podem auxiliar o revisor
 
-- Component
+- Componente
 - Mockup
 - Wireframe
-- Prototype
+- Protótipo
+- Prints
+- Videos da funcionalidade
 
-## Test Steps
+## Como testar?
 
-What are all the steps to testing your code changes?
+Quais os passos para testar esta mudança?
 
 - [ ] Enable `feature_flag`
 - [ ] Go to this page: /a-test-page
@@ -56,10 +61,15 @@ What are all the steps to testing your code changes?
 - [ ] Wait for the page to load...
 - [ ] ...
 
-## Other Notes
+## Dependências
 
-What, if anything, hasn't been addressed in these code changes but should be in future changes?
+O que precisa ir junto (outro PR, migration, config, deploy)?
+Esta seção deve existir **mesmo quando não há dependência** — nesse caso, para declarar explicitamente que não há. A ausência da seção é diferente de "sem dependências"; queremos a afirmação explícita.
 
-- ABC wasn't working as expected...
-- XYZ needs more research...
-- A fast-follow PR is already planned for addressing 1, 2, 3...
+## Outras considerações (situacional)
+
+O que, se é que houve algo, não foi tratado neste PR mas deveria ser considerado?
+
+- ABC não funcionou como esperado...
+- XYZ carece de mais pesquisa...
+- Um PR posterior já esta planejado para tratar 1, 2, 3...
