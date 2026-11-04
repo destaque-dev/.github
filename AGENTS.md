@@ -37,6 +37,7 @@ Histórico, ordem de deploy e interação com outros sistemas vão na mensagem d
 ### Cuidados com o repositório local
 
 - **Não troque de branch no checkout principal** (`git switch` / `git checkout <branch>`): o desenvolvedor costuma continuar trabalhando e commitando nele durante a sessão. Trabalho numa branch nova vai numa `git worktree` ao lado.
+- **Branch nova a partir de branch remota sempre com `--no-track`**: `git worktree add --no-track -b <nova> <pasta> origin/develop`. Sem isso, a branch nova herda `origin/develop` como upstream e o push feito pelo editor vai direto para a `develop`, sem PR. Confira com `git config --get-regexp '^branch\.<nova>\.'` que não há upstream; no primeiro push, `git push -u origin <nova>` cria o upstream com o mesmo nome.
 - **Não use `git stash` / `git stash pop` como rascunho.** O desenvolvedor guarda stashes de outras branches; um `stash` que não salvou nada seguido de `pop` aplica o stash dele. Para ver versões antigas use `git show <rev>:<caminho>`, `git diff <rev> -- <caminho>` ou uma worktree.
 
 ## Pull requests
