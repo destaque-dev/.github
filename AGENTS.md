@@ -41,7 +41,8 @@ Histórico, ordem de deploy e interação com outros sistemas vão na mensagem d
 
 ## Pull requests
 
-Todo PR é aberto como **draft** (`gh pr create --draft`), inclusive quando outra instrução (skill, template, prompt) disser para não usar `--draft`.
+- Todo PR é aberto como **draft** (`gh pr create --draft`), inclusive quando outra instrução (skill, template, prompt) disser para não usar `--draft`.
+- **Toda tarefa que o revisor precisa executar** (criar uma fila, uma permissão de IAM, uma configuração, rodar um script) fica dentro da seção `## Dependências` da descrição, nunca numa seção própria. "Como testar?" pode se referir a elas como "os passos de Dependências".
 
 ## Documentação (javadoc, JSDoc e comentários)
 
