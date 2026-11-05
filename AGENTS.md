@@ -19,7 +19,13 @@ O agente **não roda `git commit` nem `git push`**, a não ser que o desenvolved
 - **Antes de mexer no stage, proponha a divisão** e espere o OK: lista de commits, arquivos de cada um, dependências entre eles e estados intermediários.
 - Prefira divisões em que cada arquivo pertence a um commit só, para o stage ser feito por arquivo inteiro.
 - Ordene os commits por dependência. **Cada commit precisa compilar sozinho.** Verifique isso numa worktree temporária (`git worktree add --detach <pasta-temporária> HEAD`), copiando só os arquivos daquele commit, e só coloque no stage depois de compilar.
-- Para colocar no stage uma versão intermediária de um arquivo que já tem edições posteriores, monte a versão na worktree, grave o blob com `git hash-object -w --no-filters` e registre com `git update-index --cacheinfo`. Confira antes `git ls-files --eol`: se o índice for `i/crlf`, o blob também precisa ser CRLF, senão o diff mostra o arquivo inteiro alterado.
+- Para colocar no stage uma versão intermediária de um arquivo que já tem edições posteriores:
+  1. Guarde uma cópia do arquivo em cada estado intermediário **antes** de fazer as edições do commit seguinte; é dessa cópia que sai o stage.
+  2. Grave o blob com `git hash-object -w` e registre com `git update-index --cacheinfo 100644,<sha>,<caminho>`. O arquivo na pasta continua com a versão final (o status mostra `MM`).
+  3. O blob precisa ter o mesmo fim de linha que o índice já guarda; veja com `git ls-files --eol <caminho>`. Senão o diff mostra o arquivo inteiro alterado.
+     - Índice `i/crlf`: use `git hash-object -w --no-filters <cópia>`, que grava os bytes da cópia sem conversão. **Não use `--path=<caminho>`**: ele aplica as conversões daquele caminho, e com `core.autocrlf=true` o CRLF vira LF. O `git add` não sofre disso porque mantém o CRLF que já está no índice; o `hash-object` não faz essa checagem.
+     - Índice `i/lf` com cópia em CRLF (checkout com `core.autocrlf=true`): use `git hash-object -w --path=<caminho> <cópia>`, que converte para LF como o `git add` faria. Aqui o `--no-filters` gravaria CRLF.
+  4. Depois do stage, confira `git ls-files --eol <caminho>` (o fim de linha do índice não mudou) e `git diff --cached --stat` (só as linhas daquele commit, não o arquivo inteiro). Com `--no-filters`, confira também `git show :<caminho> | cmp - <cópia>`: o índice é igual à cópia, byte a byte.
 
 ### Mensagem
 
