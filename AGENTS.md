@@ -66,12 +66,16 @@ Não entra no doc:
 - **Onde o dado vai parar ou quem o grava/lê.** Persistir é trabalho de outra unidade.
   - ❌ "fica só gravado no banco", "gravada na coluna X", "só para quem consulta o banco"
   - ✅ "descrição do motivo ({@link #getDescricao()})"; ✅ "com no máximo N caracteres", quando o próprio método garante esse limite.
+- **Outra função, método ou classe citada como origem ou destino de um valor**, mesmo no mesmo arquivo. O doc fica preso a quem produz ou consome o valor; descreva o formato que a própria unidade lê ou devolve. Um `{@link}` para membro da própria unidade pode.
+  - ❌ `@param fulltextDoc - resposta do get, como devolvido por getClientFulltextDoc`
+  - ✅ `@param fulltextDoc - documento lido do fulltext, com _id, _seq_no e _primary_term`
 - **Nada que dependa de deploy ou de tempo.** Fica falso assim que os deploys terminam.
   - ❌ "chega aqui mensagem enviada antes do deploy desta regra", "revisão gravada pelo código antigo"
 
-A mesma regra vale para **comentários inline**: explicam o que este trecho faz e por quê, nunca como outro componente se comporta.
+A mesma regra vale para **comentários inline**: explicam o que este trecho faz e por quê, nunca como outro componente se comporta, nem por alusão a algo feito em outro ponto do código.
 
 - ✅ "confirmar marcaria a revisão como indexada sem documento no índice"
+- ❌ "o arquivo ainda pode estar no índice antigo se não foi migrado" — alude à migração feita em outro ponto; ✅ "o arquivo ainda pode ter documento no índice antigo"
 
 Prefira nomes de métodos que digam o efeito, e não um consumidor específico: `marcaParaReenvio` em vez de `devolveAoPolling`.
 
@@ -87,13 +91,14 @@ Esse doc único também segue a regra anterior: só o que o próprio tipo garant
 
 ### Revisão antes do stage
 
-Antes de colocar um commit no stage, leia as linhas de doc e comentário adicionadas:
+Antes de colocar um commit no stage, leia uma a uma as linhas de doc e comentário adicionadas. É um passo explícito: lembrar das regras acima não basta.
 
 ```bash
 git diff --cached | grep -E '^\+.*(\*|//|<%--)'
 ```
 
-e confira:
+Com vários commits pendentes, troque `--cached` por `HEAD` para ver as linhas de todos. Confira:
 
 - se alguma descreve chamador, outro componente, onde o dado é gravado ou situação de deploy;
+- se alguma cita pelo nome outra função, método ou classe, ou alude a algo feito em outro ponto do código;
 - se a mesma ideia aparece escrita em mais de um lugar — fica só no doc do tipo dono.
