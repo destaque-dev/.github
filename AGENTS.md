@@ -15,10 +15,9 @@ O agente **não roda `git commit` nem `git push`**, a não ser que o desenvolved
 
 ### Commits atômicos, cada um compilando
 
-- Separe as mudanças em commits atômicos, agrupados por efeito, e não num commit único. Quando uma correção cai em cima de trabalho que tem outro objetivo, ela vira um commit à parte (ex.: primeiro a correção da guarda, depois a feature que se apoia nela).
-- **Antes de mexer no stage, proponha a divisão** e espere o OK: lista de commits, arquivos de cada um, dependências entre eles e estados intermediários.
-- Prefira divisões em que cada arquivo pertence a um commit só, para o stage ser feito por arquivo inteiro.
-- Ordene os commits por dependência. **Cada commit precisa compilar sozinho.** Verifique isso numa worktree temporária (`git worktree add --detach <pasta-temporária> HEAD`), copiando só os arquivos daquele commit, e só coloque no stage depois de compilar.
+- **Divida os commits pela lógica da mudança, nunca por arquivo.** Cada commit é atômico: uma alteração completa e coerente, que se sustenta pelo que muda e pelo motivo da mudança. Um arquivo pode ser dividido entre vários commits, e um commit pode tocar vários arquivos. Quando uma correção cai em cima de trabalho que tem outro objetivo, ela vira um commit à parte (ex.: primeiro a correção da guarda, depois a feature que se apoia nela).
+- **Antes de mexer no stage, proponha a divisão** e espere o OK: lista de commits, o que entra em cada um, dependências entre eles e estados intermediários.
+- Ordene os commits por dependência. **Cada commit precisa compilar sozinho.** Verifique isso numa worktree temporária (`git worktree add --detach <pasta-temporária> HEAD`), com cada arquivo na versão daquele commit, e só coloque no stage depois de compilar.
 - Para colocar no stage uma versão intermediária de um arquivo que já tem edições posteriores:
   1. Guarde uma cópia do arquivo em cada estado intermediário **antes** de fazer as edições do commit seguinte; é dessa cópia que sai o stage.
   2. Grave o blob com `git hash-object -w` e registre com `git update-index --cacheinfo 100644,<sha>,<caminho>`. O arquivo na pasta continua com a versão final (o status mostra `MM`).
